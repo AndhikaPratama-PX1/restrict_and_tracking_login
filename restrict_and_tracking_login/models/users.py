@@ -35,11 +35,11 @@ class ResUsers(models.Model):
     id_session = fields.Char("Session ID")
 
     @classmethod
-    def _login(cls, db, login, password, user_agent_env):
+    def _login(cls, db, login, password):
         session_obj = request.env['restrict.users.session']
         ip = request.httprequest.environ['REMOTE_ADDR'] if request else 'n/a'
         user_obj = request.env['res.users']
-        result = super(ResUsers, cls)._login(db, login, password, user_agent_env=user_agent_env)
+        result = super(ResUsers, cls)._login(db, login, password)
         user_id = result
         user = user_obj.sudo().browse(user_id)
         url = 'http://ipinfo.io/'+str(ip)+'/json'
