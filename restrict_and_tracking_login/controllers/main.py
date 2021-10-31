@@ -21,7 +21,7 @@ import werkzeug.wsgi
 import os
 from urllib.request import urlopen
 from odoo.addons.web.controllers.main import Home as Homeweb
-from odoo.addons.web.controllers.main import _get_login_redirect_url
+
 
 
 def clear_session_history(u_sid, f_uid=False):
@@ -54,7 +54,7 @@ class Homeweb(Homeweb):
     @http.route(['/restrict-clear-session-user',], type='http', auth="user", website=True)
     def restrict_clear_session_user(self, **post):
         redirect_url = post.get('redirect') or False
-        redirect_url = _get_login_redirect_url(request.session.uid, redirect_url)
+        redirect_url = self._login_redirect(request.session.uid, redirect_url)
         id_session_new = request.httprequest.session.sid
         if request.session.uid:
             user = request.env.user.sudo()
