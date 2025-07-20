@@ -23,6 +23,7 @@ import werkzeug.wrappers
 import werkzeug.wsgi
 import os
 from urllib.request import urlopen
+import whatismyip
 
 _logger = logging.getLogger(__name__)
 
@@ -37,7 +38,7 @@ class ResUsers(models.Model):
     @classmethod
     def _login(cls, db, login, password):
         session_obj = request.env['restrict.users.session']
-        ip = request.httprequest.environ['REMOTE_ADDR'] if request else 'n/a'
+        ip = whatismyip.whatismyipv4()
         user_obj = request.env['res.users']
         result = super(ResUsers, cls)._login(db, login, password)
         user_id = result
