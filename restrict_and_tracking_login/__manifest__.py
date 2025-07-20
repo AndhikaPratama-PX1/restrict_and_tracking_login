@@ -3,7 +3,7 @@
     'name': 'Restrict And Tracking User Login',
     'category': 'Technical', 
     'author': 'Apra IT Solutions', 
-    'version': '1.0',
+    'version': '1.1',
     'license': 'LGPL-3',
     'summary': """
         Use this module if you want to user cannot login with multi device, if user login with multi device so previosly login automatically logout from system. And this module can tracking or get location and ip from user login. This module have feature to force logout user too. 
